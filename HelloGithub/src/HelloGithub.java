@@ -1,8 +1,8 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class JavaProject1 {
-
+public class HelloGithub {
+	//dab on the haters
 	//test cases:
 	//1/2 + 54_3/3 = 55 1/2
 	//3 + 4/3 * 53 + 3_5/20 = 76 11/12
