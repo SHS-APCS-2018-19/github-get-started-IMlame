@@ -1,44 +1,27 @@
 public class Point {
 	private double x;
 	private double y;
-	private double theta;
-	private double radius;
 	public Point (int x, int y) {
-		setX(x);
-		setY(y);
-		radius = Math.sqrt(x*x + y*y);
-		theta  = Math.atan2(x, y);
-		System.out.printf("radius: %f, theta: %f \n", radius, theta);
+		this.x = x;
+		this.y = y;
 	}
-	public String polarCoordinates() {
-		radius = Math.sqrt(x*x + y*y);
-		theta  = Math.atan2(x, y);
-		return String.format("radius: %f, theta: %f \n", radius, theta);
-	}
-		
+
 	public double toDistance(Point point2) {
 		double distance = Math.sqrt((point2.x - this.x)*(point2.x - this.x) + (point2.y - this.y)*(point2.y - this.y));
 		return distance;
 	}
 	public double slopeTo(Point point2) {
-		System.out.println((this.y - point2.y) + " / " + (this.x - point2.x));
 		return (this.y - point2.y) / (this.x - point2.x);
 	}
 	public String midpointTo(Point point2) {
 		return "(" + (this.x + point2.x) / 2 + "," + (this.y + point2.y) / 2 + ")";
 	}
 	
-	public double getX() {
-		return x;
+	public int getX() {
+		return (int)x;
 	}
-	public double getY() {
-		return y;
-	}
-	public void setX(int x) {
-		this.x = x;
-	}
-	public void setY(int y) {
-		this.y = y;
+	public int getY() {
+		return (int)y;
 	}
 	public String getCoords() {
 		return "(" + x + "," + y + ")";
@@ -58,14 +41,12 @@ public class Point {
 			return "on y axis";
 		}
 	}
-	public void getMethods() {
-		System.out.println("point.getX() returns x value of given point");
-		System.out.println("point.getY() returns y value of given point");
-		System.out.println("point.distanceTo(another point) returns distance between two points");
-		System.out.println("point.midpointTo(another point) returns midpoint between two points");
-		System.out.println("point.slopeTo(another point) returns slope between two points");
-		System.out.println("point.quadrant() returns quadrant of point");
-		System.out.println("point.getCoords() returns coordinates of point"); 
+	public static void getMethods() {
+		System.out.println("1. get distance");
+		System.out.println("2. midpoint");
+		System.out.println("3. slope");
+		System.out.println("4. quadrant");
+		System.out.println("5. coords");
 	}
 
 }
