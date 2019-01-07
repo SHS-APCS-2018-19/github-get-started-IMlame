@@ -57,7 +57,7 @@ public class classes {
 	public void addStudent() {
 		Scanner sAddStudents = new Scanner(System.in);
 		System.out.println("name of student?");
-		if (isClassFull()) {
+		if (classHasRoom()) {
 			list.add(sAddStudents.nextLine());
 			students = list.toArray(new String[list.size()]);
 			System.out.println(Arrays.toString(students));
@@ -94,7 +94,7 @@ public class classes {
 				returnStatementPeriod);
 	}
 
-	public boolean isClassFull() {
+	public boolean classHasRoom() {
 		if(students == null) {
 			return true;
 		
