@@ -11,7 +11,7 @@ public class classes {
 	private static int courseNumber;
 	private int currentCourseNumber;
 	ArrayList<String> list = new ArrayList<String>();
-	private final int MAX_CLASS_SIZE = 25;
+	private final int MAX_CLASS_SIZE = 2;
 	Scanner in = new Scanner(System.in);
 
 	public static classes createClass() {

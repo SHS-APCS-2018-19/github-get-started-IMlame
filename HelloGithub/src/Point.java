@@ -2,8 +2,8 @@ public class Point {
 	private double x;
 	private double y;
 	public Point (int x, int y) {
-		this.x = x;
-		this.y = y;
+		setX(x);
+		setY(y);
 	}
 
 	public double toDistance(Point point2) {
@@ -22,6 +22,12 @@ public class Point {
 	}
 	public int getY() {
 		return (int)y;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
+	public void setY(int y) {
+		this.y = y;
 	}
 	public String getCoords() {
 		return "(" + x + "," + y + ")";
