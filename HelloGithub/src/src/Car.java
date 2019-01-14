@@ -1,19 +1,34 @@
 package src;
-
 public class Car extends Vehicle {
-	public static int increment;
-	public static String licensePlateCar = "C" + increment;
-	public Car() {
-		super(licensePlateCar);
+	public static int increment = 1;
 
-		System.out.println(increment);
-		
+	public Car() {
+		super("C" + increment);
+		increment +=2;
 	}
+
 	public void openTrunk() {
 		System.out.println("trunk open");
 	}
-	
+
 	public void closeTrunk() {
 		System.out.println("trunk closed");
+	}
+
+	@Override
+	void getSpeed() {
+		System.out.println(speed);
+		
+	}
+
+	@Override
+	void getGasMileage() {
+		System.out.println("40 miles per gallon");
+		
+	}
+
+	@Override
+	void getWeight() {
+		System.out.println("700 pounds");		
 	}
 }

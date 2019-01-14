@@ -1,14 +1,16 @@
 package src;
-
-
-public class Vehicle {
-	int speed;
+abstract class Vehicle {
+	protected int speed;
 	String licensePlate;
-
+	abstract void getSpeed();
+	abstract void getGasMileage();
+	abstract void getWeight();
+	
 	public Vehicle(String licensePlate) {
 		this.licensePlate = licensePlate;
 		System.out.println(licensePlate);
 	}
+
 	public void start() {
 		System.out.println("Starting");
 	}
@@ -16,10 +18,7 @@ public class Vehicle {
 	public void stop() {
 		System.out.println("Stopping");
 	}
-	
-	public int getSpeed() {
-		return speed;
-	}
+
 	
 	public void setSpeed(int speed) {
 		System.out.println("Speed set to " + speed);

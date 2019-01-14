@@ -1,5 +1,4 @@
 package src;
-
 public class Driver {
 
 	public static void main(String[] args) {
@@ -10,14 +9,16 @@ public class Driver {
 		//Car moo = new Truck(); can't compile
 		//Truck moo = new Vehicle(); can't compile
 		//Car moo = new Vehicle(); can't compile
-		Car moo = new Car();
+		Truck moo = new Truck();
 		Car dab = new Car();
 		Car ree = new Car();
-		moo.closeTrunk();
-		moo.setSpeed(35);
-		moo.openTrunk();
+		moo.closeTailgate();
+		moo.setSpeed(75);
+		moo.increaseSpeed(2);
+		moo.openTailgate();
 		moo.stop();
 		moo.turn();
+		moo.getGasMileage();
 	}
 
 }
