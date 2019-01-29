@@ -34,8 +34,8 @@ public class Truck extends Vehicle {
 	}
 
 	@Override
-	void getSpeed() {
-		System.out.println(speed);
+	void getMaxSpeed() {
+		System.out.println("100 mph max");
 		
 	}
 

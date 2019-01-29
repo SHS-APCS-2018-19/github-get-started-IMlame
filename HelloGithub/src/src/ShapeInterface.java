@@ -1,5 +1,7 @@
 package src;
 
-public class ShapeInterface {
+public interface ShapeInterface {
+	public void Area();
+	public void Perimeter();
 	
 }

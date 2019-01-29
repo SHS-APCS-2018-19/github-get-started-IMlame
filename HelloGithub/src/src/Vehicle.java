@@ -2,7 +2,7 @@ package src;
 abstract class Vehicle {
 	protected int speed;
 	String licensePlate;
-	abstract void getSpeed();
+	abstract void getMaxSpeed();
 	abstract void getGasMileage();
 	abstract void getWeight();
 	

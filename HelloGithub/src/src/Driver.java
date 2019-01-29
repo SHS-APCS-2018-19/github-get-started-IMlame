@@ -12,6 +12,7 @@ public class Driver {
 		Truck moo = new Truck();
 		Car dab = new Car();
 		Car ree = new Car();
+		Vehicle rawr = new Car();
 		moo.closeTailgate();
 		moo.setSpeed(75);
 		moo.increaseSpeed(2);
@@ -19,6 +20,11 @@ public class Driver {
 		moo.stop();
 		moo.turn();
 		moo.getGasMileage();
+		
+		System.out.println(moo instanceof Vehicle);
+		//System.out.println(dab instanceof moo); false: truck isn't an instance of car
+		System.out.println(rawr instanceof Vehicle);
+		//System.out.println(Vehicle instanceof rawr); false
 	}
 
 }
