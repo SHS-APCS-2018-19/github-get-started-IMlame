@@ -42,7 +42,7 @@ public class employee {
 	}
 	
  	public String toString() {
-		return id + " " + name + " " + birthday + " " + Specialty;
+		return id + " " + name + " " + birthday + " " + Specialty + " " + Projects;
 	}
  	
  	public String getID() {

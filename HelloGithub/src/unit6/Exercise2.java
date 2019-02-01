@@ -20,6 +20,13 @@ public class Exercise2 {
 		employeeInfo(list);
 		employeeSkills(list);
 		employeeProjects(list);
+		Scanner test = new Scanner(System.in);
+		while (1 == 1) {
+			String oof = test.nextLine();
+			employeeFindProjects(list, oof);
+			employeeFind(list, oof);
+			employeeFindSkills(list,oof);
+		}
 	}
 
 	public static void employeeInfo(ArrayList<employee> list) {
@@ -48,6 +55,40 @@ public class Exercise2 {
 				if (n.Projects.contains(employee.uniqueProject.get(i))) {
 					System.out.println(n.getName());
 				}
+			}
+		}
+	}
+
+	public static void employeeFindSkills(ArrayList<employee> list, String skill) {
+		for (int i = 0; i < employee.uniqueSpecialty.size(); i++) {
+			if (employee.uniqueSpecialty.get(i).equals(skill)) {
+				System.out.println(employee.uniqueSpecialty.get(i) + ": ");
+				for (employee n : list) {
+					if (n.Specialty.contains(employee.uniqueSpecialty.get(i))) {
+						System.out.println(n.getName());
+					}
+				}
+			}
+		}
+	}
+
+	public static void employeeFindProjects(ArrayList<employee> list, String project) {
+		for (int i = 0; i < employee.uniqueProject.size(); i++) {
+			if (employee.uniqueProject.get(i).equals(project)) {
+				System.out.println(employee.uniqueProject.get(i) + ": ");
+				for (employee n : list) {
+					if (n.Projects.contains(employee.uniqueProject.get(i))) {
+						System.out.println(n.getName());
+					}
+				}
+			}
+		}
+	}
+
+	public static void employeeFind(ArrayList<employee> list, String name) {
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getName().equals(name)) {
+				System.out.println(list.get(i));
 			}
 		}
 	}
