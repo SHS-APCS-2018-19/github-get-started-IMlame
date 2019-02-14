@@ -1,3 +1,4 @@
+package unit7;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
@@ -22,10 +23,7 @@ public class Exercise2 {
 		System.out.println(binarySearch(num, 9));
 		System.out.println(binarySearch(num, 43));
 		System.out.println(binarySearch(num, 79));
-		System.out.println(Arrays.binarySearch(num, 5));
-		System.out.println(Arrays.binarySearch(num, 9));
-		System.out.println(Arrays.binarySearch(num, 43));
-		System.out.println(Arrays.binarySearch(num, 79));
+
 	}
 
 	public static int binarySearch(int[] num, int target) {
