@@ -6,10 +6,10 @@ import java.util.Arrays;
 
 import java.util.Scanner;
 
-public class tictactoeclient {
+	public class tictactoeclient {
 	public static final int winSize = 3;
 	public String player1;
-	static Scanner input = new Scanner(System.in);
+
 	public String player2;
 	static String[][] board = new String[3][3];
 	public static boolean turn;
@@ -17,13 +17,12 @@ public class tictactoeclient {
 	public static ArrayList<Point> playertwo = new ArrayList<Point>();
 
 	public static void main(String[] args) {
-
-
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[0].length; j++) {
 				board[i][j] = " ";
 			}
 		}
+		//print out initial board
 		int end = 0;
 		int r = 2;
 		while (end == 0) {
@@ -31,18 +30,23 @@ public class tictactoeclient {
 			printBoard(board);
 			handleinput(r);
 			end = checkWin(board);
-
+			//end set to value of either 1(x wins) 2(o wins) 3(tie) or 0 (game continues)
 			r++;
+			//track the turn
 		}
 
 	}
 
 	public static void handleinput(int runthru) {
-
+		Scanner inputT = new Scanner(System.in);
 		if (runthru % 2 == 0) {
 			System.out.println("Player1's turn: Enter location");
+			String inputTemp = inputT.nextLine();
+			Scanner input = new Scanner(inputTemp).useDelimiter(",");
+			//Takes in String, uses String in second scanner with using "," as a delimiter
 			int que = input.nextInt() - 1;
 			int you = input.nextInt() - 1;
+			//set column and row to each input, -1 to match index
 			if (que > 3 || you > 3) {
 				System.out.println("Numbers are out of range, pick again"); // this is if the inputted numbers are out of range
 				que = input.nextInt() - 1;
@@ -51,16 +55,21 @@ public class tictactoeclient {
 			if (board[que][you] != " ") {
 				System.out.println("Spot already selected, pick another spot"); // this is if the spot is already taken
 				System.out.println("Player1's turn: Enter location");
-				que = input.nextInt() - 1;
-				you = input.nextInt() - 1;
+				String inputTemp2 = inputT.nextLine();
+				Scanner input2 = new Scanner(inputTemp2).useDelimiter(",");
+				//take in input again
+				que = input2.nextInt() - 1;
+				you = input2.nextInt() - 1;
 			}
 			Point points = new Point(que, you);
 			playerone.add(points);
 			board[que][you] = "X";
+			//set board
 		}
 		if (runthru % 2 == 1) {
-
 			System.out.println("Player2's turn: Enter location");
+			String inputTemp = inputT.nextLine();
+			Scanner input = new Scanner(inputTemp).useDelimiter(",");
 			int que = input.nextInt() - 1;
 			int you = input.nextInt() - 1;
 			if (que > 3 || you > 3) {
@@ -71,8 +80,10 @@ public class tictactoeclient {
 			if (board[que][you] != " ") {
 				System.out.println("Spot already selected, pick another spot");
 				System.out.println("Player2's turn: Enter location");
-				que = input.nextInt() - 1;
-				you = input.nextInt() - 1;
+				String inputTemp2 = inputT.nextLine();
+				Scanner input2 = new Scanner(inputTemp2).useDelimiter(",");
+				que = input2.nextInt() - 1;
+				you = input2.nextInt() - 1;
 			}
 			Point points = new Point(que, you);
 			playertwo.add(points);
@@ -94,13 +105,14 @@ public class tictactoeclient {
 				} else {
 					arr[i][j] = "|" + board[i][j];
 					System.out.print(arr[i][j]);
-}
+				}
 			}
 		}
 	
 	}
 
 	public static int checkWin(String[][] board) {
+		//translate number result to x win, o win, tie game, or game continuing
 		int status = testWin(board);
 		if (status == 1) {
 			printBoard(board);
@@ -118,8 +130,6 @@ public class tictactoeclient {
 			return 3;
 		}
 		if (status == 0) {
-			// (not necessary)
-			System.out.println("Game continues!");
 			return 0;
 		}
 		return 0;
@@ -133,10 +143,13 @@ public class tictactoeclient {
 				String tester = "";
 				for (int k = 0; k < winSize; k++) {
 					tester += board[i][j + k];
+					//collects every character on board in row pattern
+
 				}
 				int result = checkX(tester) + checkO(tester);
 				if (result > 0) {
 					return result;
+					//if tie, X wins, or O wins, return the result
 				}
 
 			}
@@ -149,6 +162,8 @@ public class tictactoeclient {
 				String tester = "";
 				for (int k = 0; k < winSize; k++) {
 					tester += board[j + k][i];
+					//collects every character on board in column pattern
+
 				}
 				int result = checkX(tester) + checkO(tester);
 				if (result > 0) {
@@ -164,11 +179,12 @@ public class tictactoeclient {
 				String tester = "";
 				for (int k = 0; k < winSize; k++) {
 					tester += board[i + k][j + k];
-					// returns value if either X or O wins
+					//collects every character on board in diagonal pattern
 				}
 				int result = checkX(tester) + checkO(tester);
 				if (result > 0) {
 					return result;
+					//if tie, X wins, or O wins, return the result
 				}
 			}
 		}
@@ -179,11 +195,14 @@ public class tictactoeclient {
 				String tester = "";
 				for (int k = 0; k < winSize; k++) {
 					tester += board[i - k][j + k];
-					// returns value if either X or O wins
+					//collects every character on board in diagonal pattern
+
 				}
 				int result = checkX(tester) + checkO(tester);
+				// returns value if either X or O wins
 				if (result > 0) {
 					return result;
+					//if tie, X wins, or O wins, return the result
 				}
 
 			}
@@ -201,18 +220,22 @@ public class tictactoeclient {
 		for (int i = 0; i < test.length(); i++) {
 			if ('X' != (test.charAt(i))) {
 				return 0;
+				//if every character isn't an "X" then return 0 (game continues)
 			}
 		}
 		return 1;
+		//X wins!
 	}
 
 	public static int checkO(String test) {
 		for (int i = 0; i < test.length(); i++) {
 			if ('O' != (test.charAt(i))) {
 				return 0;
+				//if every character isn't an "O" then return 0 (game continues)
 			}
 		}
 		return 2;
+		//O wins
 	}
 
 	public static boolean tieCheck(String[][] board) {
