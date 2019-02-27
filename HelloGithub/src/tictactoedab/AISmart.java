@@ -1,22 +1,41 @@
-package tictactoedab;
-
 import java.awt.AWTException;
-import java.awt.Robot;
-import java.math.BigInteger;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-public class AISmart {
+public class AISmart2 {
+	static int total = 0;
 	private static int winSize;
 	static boolean debug = false;
 	static boolean boardPrintOut = false;
-	static int total = 0;
-	public String[][] AIInput(String[][] board, int winSize) throws AWTException {
+
+	public String[][] AIInput(String[][] board, int winSize) {
 		boolean isX = testTurn(board);
 		this.winSize = winSize;
 		double[][] probability = new double[board.length][board[0].length];
 		probability = deepCalculate(board, probability, winSize, isX);
+
+		// test for immediate loss
+		for (int e = 0; e < board.length; e++) {
+			for (int f = 0; f < board[e].length; f++) {
+				if (board[e][f].equals(" ")) {
+					board[e][f] = opXO(isX);
+//					System.out.println(testWin(board) + " = 2? and " + isX + "\t" + testWin(board) + " = 1? and " + !isX);
+//					System.out.println(Arrays.deepToString(board));
+
+					if ((testWin(board) == 2 && isX) || (testWin(board) == 1 && !isX)) {
+						board[e][f] = " ";
+						probability[e][f] = 99;
+					}
+					board[e][f] = " ";
+				}
+
+			}
+		}
+		for (int i = 0; i < probability.length; i++) {
+			System.out.println(Arrays.toString(probability[i]));
+		}
 		double min = probability[0][0];
 		int bigRow = 0;
 		int bigColumn = 0;
@@ -28,23 +47,21 @@ public class AISmart {
 			}
 		}
 		int numSame = 0;
-		for(int i = 0; i < probability.length; i++) {
-			for(int j = 0; j < probability[i].length; j++) {
-				if(min == probability[i][j]) {
+		for (int i = 0; i < probability.length; i++) {
+			for (int j = 0; j < probability[i].length; j++) {
+				if (min == probability[i][j]) {
 					numSame++;
 				}
 			}
 		}
-		System.out.println(numSame);
 		Random rand = new Random();
-		int ranChosen = rand.nextInt(numSame) +1;
-		System.out.println(ranChosen);
+		int ranChosen = rand.nextInt(numSame) + 1;
 		int progress = 0;
-		for(int i = 0; i < probability.length; i++) {
-			for(int j = 0; j < probability[i].length; j++) {
-				if(min == probability[i][j]) {
+		for (int i = 0; i < probability.length; i++) {
+			for (int j = 0; j < probability[i].length; j++) {
+				if (min == probability[i][j]) {
 					progress++;
-					if(progress == ranChosen) {
+					if (progress == ranChosen) {
 						if (isX) {
 							board[i][j] = "X";
 						} else {
@@ -59,7 +76,7 @@ public class AISmart {
 
 	}
 
-	public double[][] deepCalculate(String[][] board, double[][] probability, int winSize, boolean isX) throws AWTException {
+	public double[][] deepCalculate(String[][] board, double[][] probability, int winSize, boolean isX) {
 		ArrayList<uqAr> list = new ArrayList<uqAr>();
 		String[][] currentStep = new String[board.length][board[0].length];
 		// copy initial board
@@ -76,53 +93,59 @@ public class AISmart {
 				double methodScore = 0;
 				if (board[a][b].equals(" ")) {
 					// test for valid spot
-					list.add(0, uqAr.make(currentStep));
-					probability[a][b] = calcX(list, isX, board, a, b);
+					probability[a][b] = calcX(currentStep, isX, board, a, b);
+
 				} else {
 					// invalid spot
 					probability[a][b] = -100;
 				}
 			}
 		}
-		for (int i = 0; i < probability.length; i++) {
-			System.out.println(Arrays.toString(probability[i]));
-		}
-		System.out.println(total);
+
 		return probability;
 
 	}
 
-	public double calcX(ArrayList<uqAr> list, boolean isX, String[][] board, int a, int b) throws AWTException {
+	public double calcX(String[][] currentStep, boolean isX, String[][] board, int a, int b) {
 		double scoreTotal = 0;
 		double numsCalculated = 0;
 		double methodScore = 0;
-		list.get(0).nextStep[a][b] = XO(isX);
-		scoreTotal = checkWin(list.get(0).nextStep, isX, testWin(list.get(0).nextStep));
-		methodScore = calcO(list, isX, list.get(0).nextStep);
-		list.get(0).nextStep[a][b] = " ";
-		if (methodScore != -100 && methodScore != 0) {
-			return (scoreTotal + methodScore)/2;
+		// test for immediate loss
+
+		currentStep[a][b] = XO(isX);
+		// test for immediate win
+		if ((testWin(currentStep) == 1 && isX) || (testWin(currentStep) == 2 && !isX)) {
+			currentStep[a][b] = " ";
+			return 100;
 		}
+		scoreTotal = checkWin(currentStep, isX, testWin(currentStep));
+		methodScore = calcO(currentStep, isX, board);
+		currentStep[a][b] = " ";
+		if (methodScore != -100 && methodScore != 0) {
+			return (scoreTotal + methodScore) / 2;
+		}
+
 		return scoreTotal;
 	}
 
-	public double calcO(ArrayList<uqAr> list, boolean isX, String[][] board) throws AWTException {
+	public double calcO(String[][] currentStep, boolean isX, String[][] board) {
 		double scoreTotal = 0;
 		double numsCalculated = 0;
 		double methodScore = 0;
-		System.out.println(checkWin(list.get(0).nextStep, isX, testWin(list.get(0).nextStep)));
-		if (checkWin(list.get(0).nextStep, isX, testWin(list.get(0).nextStep)) != 5) {
+		if (checkWin(currentStep, isX, testWin(currentStep)) != 5) {
 			for (int e = 0; e < board.length; e++) {
-				for (int f = 0; f < board.length; f++) {
-					if (list.get(0).nextStep[e][f].equals(" ")) {
-						list.get(0).nextStep[e][f] = opXO(isX);
+				for (int f = 0; f < board[e].length; f++) {
+					if (currentStep[e][f].equals(" ")) {
+						currentStep[e][f] = opXO(isX);
+						// test for immediate loss
+
 						if (testWin(board) != 0) {
-							return checkWin(list.get(0).nextStep, isX, testWin(list.get(0).nextStep));
+							return checkWin(currentStep, isX, testWin(currentStep));
 						}
-						methodScore = calcX2(list, isX, board);
-						scoreTotal += checkWin(list.get(0).nextStep, isX, testWin(list.get(0).nextStep));
+						methodScore = calcX2(currentStep, isX, board);
+						scoreTotal += checkWin(currentStep, isX, testWin(currentStep));
 						numsCalculated++;
-						list.get(0).nextStep[e][f] = " ";
+						currentStep[e][f] = " ";
 						// place O
 					}
 				}
@@ -132,28 +155,28 @@ public class AISmart {
 			}
 
 		} else {
-			System.out.println("skip");
+
 			return 5;
 		}
 		return scoreTotal / numsCalculated;
 	}
-	
-	public double calcX2(ArrayList<uqAr> list, boolean isX, String[][] board) throws AWTException {
+
+	public double calcX2(String[][] currentStep, boolean isX, String[][] board) {
 		double scoreTotal = 0;
 		double numsCalculated = 0;
 		double methodScore = 0;
-		if (checkWin(list.get(0).nextStep, isX, testWin(list.get(0).nextStep)) != -5) {
+		if (checkWin(currentStep, isX, testWin(currentStep)) != -5) {
 			for (int e = 0; e < board.length; e++) {
-				for (int f = 0; f < board.length; f++) {
-					if (list.get(0).nextStep[e][f].equals(" ")) {
-						list.get(0).nextStep[e][f] = XO(isX);
+				for (int f = 0; f < board[e].length; f++) {
+					if (currentStep[e][f].equals(" ")) {
+						currentStep[e][f] = XO(isX);
 						if (testWin(board) != 0) {
-							return checkWin(list.get(0).nextStep, isX, testWin(list.get(0).nextStep));
+							return checkWin(currentStep, isX, testWin(currentStep));
 						}
-						methodScore = calcO2(list, isX, board);
-						scoreTotal += checkWin(list.get(0).nextStep, isX, testWin(list.get(0).nextStep));
+						methodScore = calcO2(currentStep, isX, board);
+						scoreTotal += checkWin(currentStep, isX, testWin(currentStep));
 						numsCalculated++;
-						list.get(0).nextStep[e][f] = " ";
+						currentStep[e][f] = " ";
 						// place O
 					}
 				}
@@ -163,29 +186,29 @@ public class AISmart {
 			}
 
 		} else {
-			System.out.println("skip");
+
 			return -5;
 		}
 		return scoreTotal / numsCalculated;
 
 	}
 
-	public double calcO2(ArrayList<uqAr> list, boolean isX, String[][] board) throws AWTException {
+	public double calcO2(String[][] currentStep, boolean isX, String[][] board) {
 		double scoreTotal = 0;
 		double numsCalculated = 0;
 		double methodScore = 0;
-		if (checkWin(list.get(0).nextStep, isX, testWin(list.get(0).nextStep)) != 5) {
+		if (checkWin(currentStep, isX, testWin(currentStep)) != 5) {
 			for (int e = 0; e < board.length; e++) {
-				for (int f = 0; f < board.length; f++) {
-					if (list.get(0).nextStep[e][f].equals(" ")) {
-						list.get(0).nextStep[e][f] = opXO(isX);
+				for (int f = 0; f < board[e].length; f++) {
+					if (currentStep[e][f].equals(" ")) {
+						currentStep[e][f] = opXO(isX);
 						if (testWin(board) != 0) {
-							return checkWin(list.get(0).nextStep, isX, testWin(list.get(0).nextStep));
+							return checkWin(currentStep, isX, testWin(currentStep));
 						}
-						scoreTotal += checkWin(list.get(0).nextStep, isX, testWin(list.get(0).nextStep));
+						scoreTotal += checkWin(currentStep, isX, testWin(currentStep));
 						numsCalculated++;
-						methodScore = calcX3(list, isX, board);
-						list.get(0).nextStep[e][f] = " ";
+						methodScore = calcX3(currentStep, isX, board);
+						currentStep[e][f] = " ";
 						// place O
 					}
 				}
@@ -195,27 +218,28 @@ public class AISmart {
 			}
 
 		} else {
-			System.out.println("skip");
+
 			return 5;
 		}
 		return scoreTotal / numsCalculated;
 	}
-	public double calcX3(ArrayList<uqAr> list, boolean isX, String[][] board) throws AWTException {
+
+	public double calcX3(String[][] currentStep, boolean isX, String[][] board) {
 		double scoreTotal = 0;
 		double numsCalculated = 0;
 		double methodScore = 0;
-		if (checkWin(list.get(0).nextStep, isX, testWin(list.get(0).nextStep)) != -5) {
+		if (checkWin(currentStep, isX, testWin(currentStep)) != -5) {
 			for (int e = 0; e < board.length; e++) {
-				for (int f = 0; f < board.length; f++) {
-					if (list.get(0).nextStep[e][f].equals(" ")) {
-						list.get(0).nextStep[e][f] = XO(isX);
+				for (int f = 0; f < board[e].length; f++) {
+					if (currentStep[e][f].equals(" ")) {
+						currentStep[e][f] = XO(isX);
 						if (testWin(board) != 0) {
-							return checkWin(list.get(0).nextStep, isX, testWin(list.get(0).nextStep));
+							return checkWin(currentStep, isX, testWin(currentStep));
 						}
-						scoreTotal += checkWin(list.get(0).nextStep, isX, testWin(list.get(0).nextStep));
+						scoreTotal += checkWin(currentStep, isX, testWin(currentStep));
 						numsCalculated++;
-						methodScore = calcO3(list, isX, board);
-						list.get(0).nextStep[e][f] = " ";
+						methodScore = calcO3(currentStep, isX, board);
+						currentStep[e][f] = " ";
 						// place O
 					}
 				}
@@ -230,23 +254,25 @@ public class AISmart {
 		return scoreTotal / numsCalculated;
 
 	}
-	
-	public double calcO3(ArrayList<uqAr> list, boolean isX, String[][] board) throws AWTException {
+
+	public double calcO3(String[][] currentStep, boolean isX, String[][] board) {
 		double scoreTotal = 0;
 		double numsCalculated = 0;
 		double methodScore = 0;
-		if (checkWin(list.get(0).nextStep, isX, testWin(list.get(0).nextStep)) != 5) {
+		if (checkWin(currentStep, isX, testWin(currentStep)) != 5) {
 			for (int e = 0; e < board.length; e++) {
-				for (int f = 0; f < board.length; f++) {
-					if (list.get(0).nextStep[e][f].equals(" ")) {
-						list.get(0).nextStep[e][f] = opXO(isX);
+				for (int f = 0; f < board[e].length; f++) {
+					if (currentStep[e][f].equals(" ")) {
+						currentStep[e][f] = opXO(isX);
 						if (testWin(board) != 0) {
-							return checkWin(list.get(0).nextStep, isX, testWin(list.get(0).nextStep));
+							return checkWin(currentStep, isX, testWin(currentStep));
 						}
-						scoreTotal += checkWin(list.get(0).nextStep, isX, testWin(list.get(0).nextStep));
+						scoreTotal += checkWin(currentStep, isX, testWin(currentStep));
 						numsCalculated++;
-						methodScore = calcX4(list, isX, board);
-						list.get(0).nextStep[e][f] = " ";
+						if (board.length <= 3) {
+							methodScore = calcX4(currentStep, isX, board);
+						}
+						currentStep[e][f] = " ";
 						// place O
 					}
 				}
@@ -260,23 +286,24 @@ public class AISmart {
 		}
 		return scoreTotal / numsCalculated;
 	}
-	
-	public double calcX4(ArrayList<uqAr> list, boolean isX, String[][] board) throws AWTException {
+
+	public double calcX4(String[][] currentStep, boolean isX, String[][] board) {
 		double scoreTotal = 0;
 		double numsCalculated = 0;
 		double methodScore = 0;
-		if (checkWin(list.get(0).nextStep, isX, testWin(list.get(0).nextStep)) != -5) {
+		if (checkWin(currentStep, isX, testWin(currentStep)) != -5) {
 			for (int e = 0; e < board.length; e++) {
-				for (int f = 0; f < board.length; f++) {
-					if (list.get(0).nextStep[e][f].equals(" ")) {
-						list.get(0).nextStep[e][f] = XO(isX);
+				for (int f = 0; f < board[e].length; f++) {
+					if (currentStep[e][f].equals(" ")) {
+						currentStep[e][f] = XO(isX);
 						total++;
+						System.out.println(total);
 						if (testWin(board) != 0) {
-							return checkWin(list.get(0).nextStep, isX, testWin(list.get(0).nextStep));
+							return checkWin(currentStep, isX, testWin(currentStep));
 						}
-						scoreTotal += checkWin(list.get(0).nextStep, isX, testWin(list.get(0).nextStep));
+						scoreTotal += checkWin(currentStep, isX, testWin(currentStep));
 						numsCalculated++;
-						list.get(0).nextStep[e][f] = " ";
+						currentStep[e][f] = " ";
 						// place O
 					}
 				}
@@ -332,15 +359,13 @@ public class AISmart {
 		return nextStep;
 	}
 
-	public int checkWin(String[][] board, boolean isX, int status) throws AWTException {
+	public int checkWin(String[][] board, boolean isX, int status) {
 		if (boardPrintOut) {
 			for (int i = 0; i < board.length; i++) {
 				System.out.println(Arrays.toString(board[i]));
 			}
 			System.out.println();
-			Robot robot = new Robot();
-			robot.delay(200);
-			
+
 		}
 		if (status == 1) {
 			if (isX) {
@@ -374,7 +399,9 @@ public class AISmart {
 			}
 			return 0;
 		}
-
+		if (debug) {
+			System.out.println("nothing");
+		}
 		return 0;
 	}
 
