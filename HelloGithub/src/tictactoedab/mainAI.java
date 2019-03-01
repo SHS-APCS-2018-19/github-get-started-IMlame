@@ -1,5 +1,4 @@
 package tictactoedab;
-package tictactoedab;
 
 import java.awt.AWTException;
 import java.util.Arrays;
@@ -18,22 +17,13 @@ public class mainAI {
 		 * printBoard(board); board = myAI.AIInput(board, 3); }
 		 * 
 		 */
-		if (pick == 2) {
-			AISmart2 myAI2 = new AISmart2();
-			while (1 == 1) {
-				printBoard(board);
-				placePiece(board);
-				printBoard(board);
-				board = myAI2.AIInput(board, 3);
-			}
-		}
-		AISmart myAI = new AISmart();
+//		AISmart myAI = new AISmart();
 		if (pick == 1) {
 			while (1 == 1) {
 				printBoard(board);
 				placePiece(board);
 				printBoard(board);
-				board = myAI.AIInput(board, 4);
+//				board = myAI.AIInput(board, 4);
 			}
 		}
 	}
@@ -114,4 +104,3 @@ public class mainAI {
 
 }
 
-}
