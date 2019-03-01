@@ -1,6 +1,6 @@
 package tictactoedab;
+package tictactoedab;
 
-public class mainAI {
 import java.awt.AWTException;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -12,7 +12,7 @@ public class mainAI {
 
 	public static void main(String[] args) throws AWTException {
 
-		String[][] board = { { " ", " ", " "}, { " ", " ", " "}, { " ", " ", " "} };
+		String[][] board = { { " ", " ", " " }, { " ", " ", " " }, { " ", " ", " " } };
 		/*
 		 * AI myAI = new AI(); while(1==1) { printBoard(board); placePiece(board);
 		 * printBoard(board); board = myAI.AIInput(board, 3); }
@@ -67,7 +67,7 @@ public class mainAI {
 				}
 			}
 			if (!gross) {
-				if(column < 0) {
+				if (column < 0) {
 					column *= -1;
 				}
 				if (board[column - 1][row - 1].equals(" ") && column - 1 < board.length && row - 1 < board[0].length) {

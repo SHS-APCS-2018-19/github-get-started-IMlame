@@ -12,6 +12,7 @@ public class AISmart {
 	static boolean debug = false;
 	static boolean boardPrintOut = false;
 	static int total = 0;
+
 	public String[][] AIInput(String[][] board, int winSize) throws AWTException {
 		boolean isX = testTurn(board);
 		this.winSize = winSize;
@@ -28,23 +29,23 @@ public class AISmart {
 			}
 		}
 		int numSame = 0;
-		for(int i = 0; i < probability.length; i++) {
-			for(int j = 0; j < probability[i].length; j++) {
-				if(min == probability[i][j]) {
+		for (int i = 0; i < probability.length; i++) {
+			for (int j = 0; j < probability[i].length; j++) {
+				if (min == probability[i][j]) {
 					numSame++;
 				}
 			}
 		}
 		System.out.println(numSame);
 		Random rand = new Random();
-		int ranChosen = rand.nextInt(numSame) +1;
+		int ranChosen = rand.nextInt(numSame) + 1;
 		System.out.println(ranChosen);
 		int progress = 0;
-		for(int i = 0; i < probability.length; i++) {
-			for(int j = 0; j < probability[i].length; j++) {
-				if(min == probability[i][j]) {
+		for (int i = 0; i < probability.length; i++) {
+			for (int j = 0; j < probability[i].length; j++) {
+				if (min == probability[i][j]) {
 					progress++;
-					if(progress == ranChosen) {
+					if (progress == ranChosen) {
 						if (isX) {
 							board[i][j] = "X";
 						} else {
@@ -59,7 +60,8 @@ public class AISmart {
 
 	}
 
-	public double[][] deepCalculate(String[][] board, double[][] probability, int winSize, boolean isX) throws AWTException {
+	public double[][] deepCalculate(String[][] board, double[][] probability, int winSize, boolean isX)
+			throws AWTException {
 		ArrayList<uqAr> list = new ArrayList<uqAr>();
 		String[][] currentStep = new String[board.length][board[0].length];
 		// copy initial board
@@ -101,7 +103,7 @@ public class AISmart {
 		methodScore = calcO(list, isX, list.get(0).nextStep);
 		list.get(0).nextStep[a][b] = " ";
 		if (methodScore != -100 && methodScore != 0) {
-			return (scoreTotal + methodScore)/2;
+			return (scoreTotal + methodScore) / 2;
 		}
 		return scoreTotal;
 	}
@@ -137,7 +139,7 @@ public class AISmart {
 		}
 		return scoreTotal / numsCalculated;
 	}
-	
+
 	public double calcX2(ArrayList<uqAr> list, boolean isX, String[][] board) throws AWTException {
 		double scoreTotal = 0;
 		double numsCalculated = 0;
@@ -200,6 +202,7 @@ public class AISmart {
 		}
 		return scoreTotal / numsCalculated;
 	}
+
 	public double calcX3(ArrayList<uqAr> list, boolean isX, String[][] board) throws AWTException {
 		double scoreTotal = 0;
 		double numsCalculated = 0;
@@ -230,7 +233,7 @@ public class AISmart {
 		return scoreTotal / numsCalculated;
 
 	}
-	
+
 	public double calcO3(ArrayList<uqAr> list, boolean isX, String[][] board) throws AWTException {
 		double scoreTotal = 0;
 		double numsCalculated = 0;
@@ -260,7 +263,7 @@ public class AISmart {
 		}
 		return scoreTotal / numsCalculated;
 	}
-	
+
 	public double calcX4(ArrayList<uqAr> list, boolean isX, String[][] board) throws AWTException {
 		double scoreTotal = 0;
 		double numsCalculated = 0;
@@ -340,7 +343,7 @@ public class AISmart {
 			System.out.println();
 			Robot robot = new Robot();
 			robot.delay(200);
-			
+
 		}
 		if (status == 1) {
 			if (isX) {
