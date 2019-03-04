@@ -1,9 +1,10 @@
+package unit8;
 import java.util.Scanner;
 
 public class Exercise1 {
 
 	public static void main(String[] args) {
-		System.out.println(reverse("S"));
+		System.out.println(reverse("SUSAN"));
 	}
 
 	public static String reverse(String rev) {
