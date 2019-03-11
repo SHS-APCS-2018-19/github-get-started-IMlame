@@ -12,5 +12,6 @@ public class Exercise3 {
 			return 1;
 		} else {
 		return fibonacci(num - 1) + fibonacci(num - 2);
+		}
 	}
-}}
+}

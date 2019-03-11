@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Exercise2 {
 
 	public static void main(String[] args) {
-		System.out.println(palindrome("rawwar"));
+		System.out.println(palindrome(null));
 	}
 	public static boolean palindrome(String input) {
 		if(input.length() <= 1) {
