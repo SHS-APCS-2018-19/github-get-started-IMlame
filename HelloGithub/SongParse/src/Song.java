@@ -1,13 +1,14 @@
 import java.util.Scanner;
 
 public class Song {
-	int year;
-	int rank;
-	String artist;
-	String title;
+	private int year;
+	private int rank;
+	private String artist;
+	private String title;
 	
 	public static Song parse(String s) {
 		Scanner in = new Scanner(s).useDelimiter("\t");
+		//create and return songs
 		Song newSong = new Song();
 		newSong.year = in.nextInt();
 		newSong.rank = in.nextInt();
@@ -15,7 +16,7 @@ public class Song {
 		newSong.title = in.next();
 		return newSong;
 	}
-	
+	//return variables
 	public int getYear() {
 		return year;
 	}

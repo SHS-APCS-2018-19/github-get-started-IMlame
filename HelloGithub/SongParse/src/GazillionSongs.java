@@ -16,9 +16,9 @@ public class GazillionSongs {
 			System.out.println("Invalid input file. Reenter...");
 			inFile = new File(input.nextLine());
 		}
-		Scanner in = new Scanner(inFile);// input.nextLine()
+		Scanner in = new Scanner(inFile);//input file
 		System.out.println("What file would you like to output to?");
-		File outFile = new File(input.nextLine());// input.nextLine()
+		File outFile = new File(input.nextLine());//output file
 
 		int cont = 0;
 		while (outFile.exists() && cont == 0) {
@@ -35,6 +35,7 @@ public class GazillionSongs {
 		}
 		System.out.println("Done.");
 		PrintStream out = new PrintStream(outFile);
+		//add all songs
 		while (in.hasNextLine()) {
 			songs.add(Song.parse(in.nextLine()));
 		}
@@ -59,6 +60,7 @@ public class GazillionSongs {
 						}
 						retry = 1;
 						System.out.println("new input?");
+						//parse stuff
 					} else if (filter.toLowerCase().contains("-title")) {
 						filter = filter.substring(filter.indexOf('<') + 1, filter.indexOf('>'));
 						title = filter;
@@ -110,7 +112,7 @@ public class GazillionSongs {
 					}
 				}
 			}
-
+			//filter calls
 			if (!year.equals("")) {
 				finalList.filterYear(Range.parse(year));
 			}
@@ -135,6 +137,7 @@ public class GazillionSongs {
 					System.out.println("invalid option. pick again!");
 				}
 			}
+			//input for sort
 			if (sort.toLowerCase().contains("year")) {
 				finalList.sortYear();
 				System.out.println("sorted by year");
@@ -154,6 +157,7 @@ public class GazillionSongs {
 				finish = 1;
 			}
 		}
+		//end
 		System.out.println("outputting...");
 		finalList.output(out);
 		System.out.println("Finished.");

@@ -1,0 +1,20 @@
+1953	1	Les Paul & Mary Ford	Vaya Con Dios (May God Be With You)
+1952	1	Jo Stafford	You Belong To Me
+1951	1	Johnnie Ray & Four Lads	Cry
+1950	1	Patti Page	The Tennessee Waltz
+1953	2	Percy Faith & His Orchestra (Vocal Faliecia Sanders)	Song From Moulin Rouge (Where is Your Heart)
+1952	2	Kay Starr	Wheel of Fortune
+1951	2	Tony Bennett	Because of You
+1950	2	Weavers (Gordon Jenkins & His Orchestra)	Goodnight, Irene
+1953	3	Ames Brothers	You You You
+1951	3	Les Paul & Mary Ford	How High The Moon
+1952	3	Patti Page	I Went to Your Wedding
+1950	3	Anton Karas	The Third Man Theme
+1951	4	Perry Como	If
+1953	4	Tony Bennett	Rags To Riches
+1952	4	Vera Lynn	Auf Wiederseh'n Sweetheart
+1950	4	Guy Lombardo & His Royal Canadians	The Third Man Theme
+1952	5	Georgia Gibbs	Kiss of Fire
+1953	5	Patti Page	The Doggie In The Window
+1951	5	Eddy Howard & His Orchestra	Sin (It's No Sin)
+1950	5	Eileen Barton	If I Knew You Were Comin' I'd've Baked a Cake

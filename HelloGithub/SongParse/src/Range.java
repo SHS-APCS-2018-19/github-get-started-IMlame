@@ -37,7 +37,8 @@ public class Range {
 				return false;
 			}
 		}
-		if((min >= 1 && min <= 743) && (max >= 1 && max <= 743) && (max >= min)) {
+		//check for invalid rank
+		if((min >= 0 && min <= 743) && (max >= 0 && max <= 743) && (max >= min)) {
 			return true;
 		} else {
 			return false;
@@ -56,6 +57,7 @@ public class Range {
 				return false;
 			}
 		}
+		//check for invalid year
 		if((min >= 1807 && min <= 2008) && (max >= 1807 && max <= 2008) && (max >= min)) {
 			return true;
 		} else {

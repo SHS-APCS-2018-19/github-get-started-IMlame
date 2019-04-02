@@ -8,7 +8,7 @@ public class SongCollection {
 	public SongCollection(ArrayList<Song> songs) {
 		this.songs = songs;
 	}
-
+	//different filters sequential
 	public void filterYear(Range r) throws FileNotFoundException {
 		for (int i = 0; i < songs.size(); i++) {
 			if (r.contains(songs.get(i).getYear())) {
@@ -41,7 +41,7 @@ public class SongCollection {
 
 	public void filterTitle(String r) throws FileNotFoundException {
 		for (int i = 0; i < songs.size(); i++) {
-			if (songs.get(i).getTitle().toLowerCase().contains(r.toLowerCase())) {
+			if (songs.get(i).getTitle().contains(r)) {
 			} else {
 				songs.remove(i);
 				i--;
@@ -65,6 +65,7 @@ public class SongCollection {
 	public void sortTitle() {
 		selectionSort("title");
 	}
+	//selection sort sort
 	public void selectionSort(String pick) {
 		for (int i = 0; i < songs.size(); i++) {
 			int min = i;

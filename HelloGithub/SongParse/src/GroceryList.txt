@@ -1,0 +1,10 @@
+5
+Elephant
+Cow
+Water Buffalo
+Squirrel
+Pig
+3
+Hippo
+Deer
+Water Buffalo
