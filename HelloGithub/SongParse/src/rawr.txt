@@ -1,20 +1,32 @@
-1953	1	Les Paul & Mary Ford	Vaya Con Dios (May God Be With You)
-1952	1	Jo Stafford	You Belong To Me
-1951	1	Johnnie Ray & Four Lads	Cry
-1950	1	Patti Page	The Tennessee Waltz
-1953	2	Percy Faith & His Orchestra (Vocal Faliecia Sanders)	Song From Moulin Rouge (Where is Your Heart)
-1952	2	Kay Starr	Wheel of Fortune
-1951	2	Tony Bennett	Because of You
-1950	2	Weavers (Gordon Jenkins & His Orchestra)	Goodnight, Irene
-1953	3	Ames Brothers	You You You
-1951	3	Les Paul & Mary Ford	How High The Moon
-1952	3	Patti Page	I Went to Your Wedding
-1950	3	Anton Karas	The Third Man Theme
-1951	4	Perry Como	If
-1953	4	Tony Bennett	Rags To Riches
-1952	4	Vera Lynn	Auf Wiederseh'n Sweetheart
-1950	4	Guy Lombardo & His Royal Canadians	The Third Man Theme
-1952	5	Georgia Gibbs	Kiss of Fire
-1953	5	Patti Page	The Doggie In The Window
-1951	5	Eddy Howard & His Orchestra	Sin (It's No Sin)
-1950	5	Eileen Barton	If I Knew You Were Comin' I'd've Baked a Cake
+1951	24	Debbie Reynolds & Carlton Carpenter	Aba Daba Honeymoon
+1912	92	Walter Van Brunt	After the Honeymoon
+1906	86	Frank Stanley & Corrine Morgan	By the Light of the Honeymoon
+1919	116	Monroe Silver	Cohen on His Honeymoon
+1965	616	Waikikis, The	Hawaii Honeymoon
+1909	14	Henry Burr	Honey On Our Honeymoon
+1933	143	Leo Reisman & His Orchestra	Honeymoon Hotel
+1914	98	Elsie Baker & James F. Harrison	If We Were On Our Honeymoon
+1959	543	Stonewall Jackson	Igmoo (The Pride Of South Central High)
+1910	29	Arthur Collins & Byron Harlan	On a Monkey Honeymoon
+1914	66	Arthur Collins & Byron Harlan	On the Honeymoon Express
+1960	466	Johnny Cash	Second Honeymoon
+1999	1	Santana	Smooth
+2001	104	Alien Ant Farm	Smooth Criminal
+1989	86	Michael Jackson	Smooth Criminal
+1959	273	Sarah Vaughan	Smooth Operator
+1985	59	Sade	Smooth Operator
+1951	217	Ella Fitzgerald	Smooth Sailing
+1989	310	Bulletboys	Smooth Up
+1914	10	Arthur Collins & Byron Harlan	The Aba Daba Honeymoon
+1951	91	Freddy Martin & His Orchestra	The Aba Daba Honeymoon
+1951	63	Richard Hayes & Kitty Kallen	The Aba Daba Honeymoon
+1951	220	Hoagy Carmichael & Cass Daley	The Aba Daba Honeymoon
+1951	171	Cliff Steward & The San Francisco Boys	The Aba Daba Honeymoon
+1911	34	Arthur Collins & Byron Harlan	The Honeymoon Glide
+1954	112	Tennessee Ernie Ford & Betty Hutton	The Honeymoon's Over
+1927	126	Fred Waring's Pennsylvanians	The Little White House (At the End of Honeymoon Lane)
+1927	63	Irving Kaufman	The Little White House (At the End of Honeymoon Lane)
+1927	32	Johnny Marvin	The Little White House (At the End of Honeymoon Lane)
+1908	21	Ada Jones & Billy Murray	There's No Moon Like the Honeymoon
+1963	183	Gene Pitney	True Love Never Runs Smooth
+1933	112	Paul Whiteman & His Orchestra	You're an Old Smoothie

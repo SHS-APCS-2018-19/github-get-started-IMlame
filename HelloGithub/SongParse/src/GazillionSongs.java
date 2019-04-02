@@ -126,12 +126,12 @@ public class GazillionSongs {
 				finalList.filterTitle(title);
 			}
 
-			System.out.println("How would you like it sorted? (\"year\", \"rank\", \"artist\", \"title\")");
+			System.out.println("How would you like it sorted? (\"year\", \"rank\", \"artist\", \"title\", \"bypass\")");
 			int end1 = 0;
 			String sort = "";
 			while (end1 == 0) {
 				sort = input.next();
-				if (sort.equals("year") || sort.equals("rank") || sort.equals("artist") || sort.equals("title")) {
+				if (sort.equals("year") || sort.equals("rank") || sort.equals("artist") || sort.equals("title")|| sort.equals("bypass")) {
 					end1 = 1;
 				} else {
 					System.out.println("invalid option. pick again!");
@@ -150,6 +150,9 @@ public class GazillionSongs {
 			} else if (sort.toLowerCase().contains("title")) {
 				finalList.sortTitle();
 				System.out.println("sorted by title");
+			} else if (sort.toLowerCase().contains("bypass")) {
+				finalList.sortTitle();
+				System.out.println("sorted by... nothing?");
 			}
 			System.out.println("end? y/n");
 			String ends = input.next();
