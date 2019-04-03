@@ -16,9 +16,9 @@ public class GazillionSongs {
 			System.out.println("Invalid input file. Reenter...");
 			inFile = new File(input.nextLine());
 		}
-		Scanner in = new Scanner(inFile);//input file
+		Scanner in = new Scanner(inFile);// input.nextLine()
 		System.out.println("What file would you like to output to?");
-		File outFile = new File(input.nextLine());//output file
+		File outFile = new File(input.nextLine());// input.nextLine()
 
 		int cont = 0;
 		while (outFile.exists() && cont == 0) {
@@ -35,13 +35,11 @@ public class GazillionSongs {
 		}
 		System.out.println("Done.");
 		PrintStream out = new PrintStream(outFile);
-		//add all songs
 		while (in.hasNextLine()) {
 			songs.add(Song.parse(in.nextLine()));
 		}
 		int end = 0;
 		int finish = 0;
-		//finish when all valid inputs parsed and inputed
 		while (finish == 0) {
 			String title, artist, rank, year, filter;
 			title = artist = rank = year = filter = "";
@@ -61,7 +59,6 @@ public class GazillionSongs {
 						}
 						retry = 1;
 						System.out.println("new input?");
-						//parse title, artist, year, rank
 					} else if (filter.toLowerCase().contains("-title")) {
 						filter = filter.substring(filter.indexOf('<') + 1, filter.indexOf('>'));
 						title = filter;
@@ -80,7 +77,6 @@ public class GazillionSongs {
 						if (Range.validYear(test)) {
 							retry = 0;
 						} else {
-							//reset and ask for input again
 							System.out.println("invalid year range\nnew filters?");
 							title = artist = year = rank = "";
 							while (temp.hasNext()) {
@@ -96,7 +92,6 @@ public class GazillionSongs {
 						if (Range.validRank(test)) {
 							retry = 0;
 						} else {
-							//reset and ask for input again
 							System.out.println("invalid rank range\nnew filters?");
 							title = artist = year = rank = "";
 							while (temp.hasNext()) {
@@ -115,7 +110,7 @@ public class GazillionSongs {
 					}
 				}
 			}
-			//filter calls
+
 			if (!year.equals("")) {
 				finalList.filterYear(Range.parse(year));
 			}
@@ -129,19 +124,17 @@ public class GazillionSongs {
 				finalList.filterTitle(title);
 			}
 
-			System.out.println("How would you like it sorted? (\"year\", \"rank\", \"artist\", \"title\", \"bypass\")");
-			//invalid input test
+			System.out.println("How would you like it sorted? (\"year\", \"rank\", \"artist\", \"title\")");
 			int end1 = 0;
 			String sort = "";
 			while (end1 == 0) {
 				sort = input.next();
-				if (sort.equals("year") || sort.equals("rank") || sort.equals("artist") || sort.equals("title")|| sort.equals("bypass")) {
+				if (sort.equals("year") || sort.equals("rank") || sort.equals("artist") || sort.equals("title")) {
 					end1 = 1;
 				} else {
 					System.out.println("invalid option. pick again!");
 				}
 			}
-			//input for sort
 			if (sort.toLowerCase().contains("year")) {
 				finalList.sortYear();
 				System.out.println("sorted by year");
@@ -154,9 +147,6 @@ public class GazillionSongs {
 			} else if (sort.toLowerCase().contains("title")) {
 				finalList.sortTitle();
 				System.out.println("sorted by title");
-			} else if (sort.toLowerCase().contains("bypass")) {
-				finalList.sortTitle();
-				System.out.println("sorted by... nothing?");
 			}
 			System.out.println("end? y/n");
 			String ends = input.next();
@@ -164,7 +154,6 @@ public class GazillionSongs {
 				finish = 1;
 			}
 		}
-		//end
 		System.out.println("outputting...");
 		finalList.output(out);
 		System.out.println("Finished.");

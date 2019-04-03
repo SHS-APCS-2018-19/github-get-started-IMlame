@@ -8,7 +8,7 @@ public class SongCollection {
 	public SongCollection(ArrayList<Song> songs) {
 		this.songs = songs;
 	}
-	//different filters sequential
+
 	public void filterYear(Range r) throws FileNotFoundException {
 		for (int i = 0; i < songs.size(); i++) {
 			if (r.contains(songs.get(i).getYear())) {
@@ -41,7 +41,7 @@ public class SongCollection {
 
 	public void filterTitle(String r) throws FileNotFoundException {
 		for (int i = 0; i < songs.size(); i++) {
-			if (songs.get(i).getTitle().contains(r)) {
+			if (songs.get(i).getTitle().toLowerCase().contains(r.toLowerCase())) {
 			} else {
 				songs.remove(i);
 				i--;
@@ -49,7 +49,7 @@ public class SongCollection {
 		}
 
 	}
-	//call sort method with correct 
+	
 	public void sortYear() {
 		selectionSort("year");
 	}
@@ -65,7 +65,6 @@ public class SongCollection {
 	public void sortTitle() {
 		selectionSort("title");
 	}
-	//selection sort sort
 	public void selectionSort(String pick) {
 		for (int i = 0; i < songs.size(); i++) {
 			int min = i;
@@ -93,8 +92,6 @@ public class SongCollection {
 			songs.set(min, temp);
 		}
 	}
-	
-	//print to file
 	public void output(PrintStream out) {
 		for (Song n : songs) {
 			out.println(n.toString());
@@ -102,4 +99,12 @@ public class SongCollection {
 		System.out.println(songs.size() + " matches found!");
 	}
 	
+	public void copyArrayList(ArrayList<Song> aL1, ArrayList<Song> aL2) {
+		aL1.clear();
+		int i = 0;
+		for(; i < aL2.size(); i++) {
+			aL1.add(aL2.get(i));
+		}
+
+	}
 }

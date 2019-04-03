@@ -5,7 +5,6 @@ public class Range {
 	private int min;
 
 	public static Range parse(String input) {
-		//parse using "-"
 		Scanner in = new Scanner(input).useDelimiter("-");
 		Range newRange = new Range();
 		newRange.min = in.nextInt();
@@ -21,6 +20,7 @@ public class Range {
 		if (n >= min && n <= max) {
 			return true;
 		} else {
+//			System.out.println(n + " is not between the ranges of " + min + " and " + max);
 			return false;
 		}
 	}
@@ -37,8 +37,7 @@ public class Range {
 				return false;
 			}
 		}
-		//check for invalid rank
-		if((min >= 0 && min <= 743) && (max >= 0 && max <= 743) && (max >= min)) {
+		if((min >= 1 && min <= 743) && (max >= 1 && max <= 743) && (max >= min)) {
 			return true;
 		} else {
 			return false;
@@ -57,7 +56,6 @@ public class Range {
 				return false;
 			}
 		}
-		//check for invalid year
 		if((min >= 1807 && min <= 2008) && (max >= 1807 && max <= 2008) && (max >= min)) {
 			return true;
 		} else {
