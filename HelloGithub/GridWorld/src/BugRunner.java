@@ -16,9 +16,11 @@
 
 import java.awt.Color;
 
+
 import info.gridworld.actor.Actor;
 import info.gridworld.actor.ActorWorld;
 import info.gridworld.actor.Bug;
+import info.gridworld.actor.Critter;
 import info.gridworld.actor.Flower;
 import info.gridworld.actor.Rock;
 
@@ -36,13 +38,13 @@ public class BugRunner
     {
         ActorWorld world = new ActorWorld();
         DyingFlower dy1 = new DyingFlower(20);
-//        Color col1 = new Color(200,200,200);
-//        SpinningFlower flow1 = new SpinningFlower(col1);
-
-//       world.add(flow1);
-        world.add(dy1);
-        world.add(new Bug());
-        world.add(new Rock());
+        CircleBug bug1 = new CircleBug();
+//        world.add(dy1);
+//        world.add(bug1);
+        world.add(new ZigZagBug());
+//        world.add(new Critter());
+//        world.add(new Bug());
+//        world.add(new Rock());
         world.show();
 
     }
