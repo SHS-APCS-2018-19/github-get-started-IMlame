@@ -10,7 +10,9 @@ public class HungryCritter extends ChameleonCritter{
 			return;
 		}
 		int r = (int)(Math.random()*n);
+		
 		Actor other = actors.get(r);
+		
 		if(getColor().equals(other.getColor())) {
 			other.removeSelfFromGrid();
 		}

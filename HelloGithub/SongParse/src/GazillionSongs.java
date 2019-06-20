@@ -8,7 +8,12 @@ public class GazillionSongs {
 	static ArrayList<Song> songs = new ArrayList<>();
 
 	public static void main(String args[]) throws FileNotFoundException {
-		SongCollection finalList = new SongCollection(songs);
+		ArrayList<String> rawr = new ArrayList<>();
+		rawr.add("hehexd");
+		rawr.add("hehexd");
+		rawr.add("hehexd");
+		System.out.println(rawr);
+		/*SongCollection finalList = new SongCollection(songs);
 		System.out.println("Hello!\tWhat file would you like to process?");
 		Scanner input = new Scanner(System.in);
 		File inFile = new File(input.nextLine());
@@ -168,6 +173,8 @@ public class GazillionSongs {
 		System.out.println("outputting...");
 		finalList.output(out);
 		System.out.println("Finished.");
+	}
+	*/
 	}
 
 }
